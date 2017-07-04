@@ -39,10 +39,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -113,13 +120,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HelpersController.cs" />
+    <Compile Include="Controllers\TemplatesController.cs" />
     <Compile Include="CustomHTMLHelpers\CustomHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Alumno.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\SampleDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SampleDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SampleDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleDataModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\tblEmployee.cs">
+      <DependentUpon>SampleDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -130,7 +157,18 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\tabla.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\img.jpg" />
     <Content Include="Images\user.png" />
+    <Content Include="Models\SampleDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SampleDataModel.edmx</DependentUpon>
+      <LastGenOutput>SampleDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SampleDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SampleDataModel.edmx</DependentUpon>
+      <LastGenOutput>SampleDataModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -142,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Archivos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -187,6 +226,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Helpers\StronglyTypedHTMLHelper.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\SampleDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SampleDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\SampleDataModel.edmx.diagram">
+      <DependentUpon>SampleDataModel.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Templates\Details.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

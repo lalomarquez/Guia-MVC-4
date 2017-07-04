@@ -56,59 +56,64 @@
         <h1>Built-In HTML helper</h1>
         <h2>A) Standard HTML helper</h2>
 
-        @*Para los Formularios*@
+        <h3>HTML Links</h3>
+        <strong>Link con texto: </strong>
+        @Html.ActionLink("Texto del link", "Name Controller")
 
+        <h3>Image Links</h3>
+        <strong>Link con imagen: </strong>
+        <a href="@Url.Action("Index", "Name Controller")"><img src="/Images/img.jpg" alt="View Details" /></a>
+
+        <h3>HTML Form Elements</h3>
         @*@{Html.BeginForm("InlineHTMLhelper", "HelpersController", FormMethod.Post);
-          Html.EndForm();
-        }*@
+              Html.EndForm();
+            }*@
 
         @*o implementa la interfaz IDisposable*@
 
         @using (Html.BeginForm("InlineHTMLhelper", "HelpersController", FormMethod.Post))
         {
-            
-        }
+            <strong>TextBox: </strong>
+            @Html.TextBox("myTextBox", "", new { @class = "form-control", @placeholder = "Input text" })
 
-        <strong>TextBox: </strong>
-        @Html.TextBox("myTextBox", "", new { @class = "form-control", @placeholder = "Input text" })
-        
-        <br />
-        <strong>TextArea: </strong>        
-        @Html.TextArea("txtComments", "", htmlAttributes: new { @style = "width: 450px;", @placeholder = "Enter Comments here" })
+            <br />
+            <strong>TextArea: </strong>
+            @Html.TextArea("txtComments", "", htmlAttributes: new { @style = "width: 450px;", @placeholder = "Enter Comments here" })
 
-        <br />
-        <strong>CheckBox: </strong>        
-        @Html.CheckBox("isNewlyEnrolled", true)
+            <br />
+            <strong>CheckBox: </strong>
+            @Html.CheckBox("isNewlyEnrolled", true)
 
-        <br />
-        <strong>RadioButton: </strong>        
-        Male:   @Html.RadioButton("Gender", "Male")
-        Female: @Html.RadioButton("Gender", "Female")
+            <br />
+            <strong>RadioButton: </strong>
+        Male: @Html.RadioButton("Gender", "Male");
+        Female: @Html.RadioButton("Gender", "Female");
 
         <br />
-        <strong>DropDownList: </strong>        
-        @Html.DropDownList("Country", 
+            <strong>DropDownList: </strong>
+            @Html.DropDownList("Country",
         new List<SelectListItem>{
             new SelectListItem{Text = "Monterrey", Value= "0"},
             new SelectListItem{Text = "Guadalajara", Value= "1"},
             new SelectListItem{Text = "Tampico", Value= "2"}
         })
 
-        <br />
-        <strong>Password: </strong>        
-        @Html.Password("OnlinePassword")
+            <br />
+            <strong>Password: </strong>
+            @Html.Password("OnlinePassword")
 
-        <br />
-        <strong>Hidden: </strong>
-        @Html.Hidden("idHidden")
+            <br />
+            <strong>Hidden: </strong>
+            @Html.Hidden("idHidden")
 
-        <br />
-        <strong>Label: </strong>
-        @Html.Label("Nombre", "mi texto")
+            <br />
+            <strong>Label: </strong>
+            @Html.Label("Nombre", "mi texto")
 
-        <br />
-        <strong>ListBox: </strong>        
-        @Html.ListBox("ListBox1", new MultiSelectList(new [] {"Cricket", "Chess", "otro", "etc"})) 
+            <br />
+            <strong>ListBox: </strong>
+            @Html.ListBox("ListBox1", new MultiSelectList(new[] { "Cricket", "Chess", "otro", "etc" }))
+        }
 
         <h2>B) Strongly typed HTML helper</h2>
 
