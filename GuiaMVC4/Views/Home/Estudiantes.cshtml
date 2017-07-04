@@ -1,0 +1,45 @@
+﻿@*@model GuiaMVC4.Models.Student*@
+@model IEnumerable<GuiaMVC4.Models.Student>
+@{
+    Layout = null;
+    ViewBag.Title = "Estudiantes";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/tabla.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="wrapper">
+        <h2>Estudiantes</h2>
+        <hr />
+        <p>@Html.ActionLink("Create New", "Create")</p>
+        <br />
+        <table id="keywords" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th><strong>@Html.DisplayNameFor(model => model.StudentName)</strong></th>
+                    <th><strong>@Html.DisplayNameFor(model => model.Age)</strong></th>
+                    <th><strong>Acciones</strong></th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td class="lalign">@Html.DisplayFor(modelItem => item.StudentName)</td>
+                        <td class="lalign">@Html.DisplayFor(modelItem => item.Age)</td>
+                        <td class="lalign">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+</body>
+</html>

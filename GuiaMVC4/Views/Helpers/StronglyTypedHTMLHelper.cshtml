@@ -1,0 +1,85 @@
+﻿@model GuiaMVC4.Models.Student
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StronglyTypedHTMLHelper</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>Student</legend>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.StudentName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.StudentName)
+                @Html.ValidationMessageFor(model => model.StudentName)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Age)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Age)
+                @Html.ValidationMessageFor(model => model.Age)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.isNewlyEnrolled)
+            </div>
+            <div class="editor-field">
+                @Html.CheckBoxFor(model => model.isNewlyEnrolled)
+                @Html.ValidationMessageFor(model => model.isNewlyEnrolled)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Gender)
+            </div>
+            <div class="editor-field">
+                Hombre: @Html.RadioButtonFor(m => m.Gender, "Male")
+                Mujer: @Html.RadioButtonFor(m => m.Gender, "Female")
+                @Html.ValidationMessageFor(model => model.Gender)
+            </div>
+    
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

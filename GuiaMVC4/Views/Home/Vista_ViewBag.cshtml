@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Vista ViewBag";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <b> @ViewBag.Mensaje </b><strong>@ViewBag.FechaAlta.ToLongDateString()</strong>
+        <hr />
+
+        <p>Ejemplo de @ViewBag.Vista</p>
+        <ul>
+            @foreach (var ciudad in ViewBag.Ciudades)
+            {
+                <li>@ciudad</li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

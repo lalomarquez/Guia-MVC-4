@@ -1,0 +1,54 @@
+﻿@model GuiaMVC4.Models.Alumno
+@{
+    Layout = null;
+    ViewBag.Title = "Uso de HtmlHelpers";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"><h1>HTMLHelpers</h1></div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">TextBox:</label>
+                    <div class="col-10">
+                        @Html.TextBox("myTextBox", "This is value", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">TextBoxFor:</label>
+                    <div class="col-10">
+                        @Html.TextBoxFor(m => m.StudentName, new { @class = "form-control", @placeholder = "Input text" })                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        
+    </div>
+</body>
+</html>

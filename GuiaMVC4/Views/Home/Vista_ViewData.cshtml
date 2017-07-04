@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Vista ViewData";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />    
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div>
+        <b> @ViewData["Mensaje"] </b>
+        <strong>@(((DateTime)ViewData["FechaAlta"]).ToLongDateString())</strong>
+        <hr />
+
+        <p>Ejemplo de @ViewData["Vista"]</p>
+        <ul>
+            @foreach (var ciudad in ViewData["Ciudades"] as List<string>)
+            {
+                <li>@ciudad</li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

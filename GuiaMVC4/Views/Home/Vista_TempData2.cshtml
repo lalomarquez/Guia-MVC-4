@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Vista TempData";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>      
+        <b> @TempData["Mensaje"] </b><strong>@TempData["FechaAlta"]</strong>
+        <hr />
+          
+        <p>Ejemplo de @TempData["Vista"]</p>
+        @{var lista = (List<string>)TempData["Ciudades"];}
+        <ul>
+            @foreach (var ciudad in lista)
+            {
+               <li> @(Html.Raw(ciudad))</li>
+            }
+        </ul>
+</div>
+</body>
+</html>
