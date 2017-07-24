@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GuiaMVC4.Repositories;
+using GuiaMVC4.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -179,7 +181,7 @@ namespace GuiaMVC4.Models
             return View();
         }
 
-        public ActionResult Vista_ViewModel()
+        public ActionResult Vista_Model()
         {
             DateTime aDay = DateTime.Now;            
             List<Ciudad> lsciudad = new List<Ciudad>();            
@@ -189,14 +191,64 @@ namespace GuiaMVC4.Models
             lsciudad.Add(new Ciudad("Monclova"));
 
             Usuario data = new Usuario();
-            data.Mensaje = "Mensaje ViewModel desde HomeController";
+            data.Mensaje = "Mensaje desde HomeController";
             data.FechaAlta = aDay;
-            data.Vista = "ViewModel";
+            data.Vista = "Generando los datos desde un Models.Usuario";
             data.ListaCiudades = lsciudad;
           
             return View(data);
         }
 
+        [HttpGet]
+        public ActionResult Vista_ViewModel()
+        {
+            var productRepository = new ProductRepository();
+
+            //for get product categories from database
+            var prodcutCategories = productRepository.GetAllProductCategories();
+
+            //for initialize viewmodel
+            var productViewModel = new ProductViewModel();
+
+            //assign values for viewmodel
+            productViewModel.ProductCategories = prodcutCategories;
+
+            return View("Vista_ViewModel", productViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Vista_ViewModel(ProductViewModel productViewModel)
+        {
+            var productRepository = new ProductRepository();
+
+            //get product category for selected drop down list value
+            var prodcutCategory = productRepository.GetProductCategory(productViewModel.SelectedValue);
+
+            //for get all product categories
+            var prodcutCategories = productRepository.GetAllProductCategories();
+
+            //for fill the drop down list when validation fails
+            productViewModel.ProductCategories = prodcutCategories;
+
+            //for initialize Product domain model
+            var productObj = new Product
+            {
+                ProductName = productViewModel.ProductName,
+                ProductCategory = prodcutCategory,
+            };
+
+            if (ModelState.IsValid) //check for any validation errors
+            {
+                //code to save valid data into database
+
+                return RedirectToAction("Vista_ViewModel");
+            }
+            else
+            {
+                //when validation failed return viewmodel back to UI (View)
+                return View(productViewModel);
+            }
+        }
         #endregion
 
         #region Integrando Modelo-Vista-Controlador

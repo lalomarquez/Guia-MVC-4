@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Vista Model";
+    @model GuiaMVC4.Models.Usuario
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <b> @Model.Mensaje </b><strong>@Model.FechaAlta.ToLongDateString()</strong>
+        <hr />
+        <p>Ejemplo de @Model.Vista</p>
+        <ul>                
+            @foreach (var ciudad in @Model.ListaCiudades)
+            {
+                <li>@ciudad.ciudad</li>
+            }
+        </ul>
+    </div>
+</body>
+</html>
